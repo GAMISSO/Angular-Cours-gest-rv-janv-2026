@@ -1,0 +1,166 @@
+
+
+    <div class="container">
+        <div class="form-section">
+            <div class="header">
+                <span style="font-size: 28px;">📅</span>
+                <h1>Demander un Rendez-vous</h1>
+            </div>
+
+            <form id="rvForm">
+                <div class="form-group">
+                    <label>
+                        <span>👤</span>
+                        Patient
+                    </label>
+                    <select id="patient" required>
+                        <option value="">-- Sélectionnez un patient --</option>
+                        <option value="pat001">Jean Dupont (PAT-001)</option>
+                        <option value="pat002">Marie Martin (PAT-002)</option>
+                        <option value="pat003">Pierre Bernard (PAT-003)</option>
+                        <option value="pat004">Sophie Lefevre (PAT-004)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <span>🏥</span>
+                        Spécialité
+                    </label>
+                    <select id="specialty" required>
+                        <option value="">-- Sélectionnez une spécialité --</option>
+                        <option value="cardio">Cardiologie</option>
+                        <option value="generaliste">Médecin Généraliste</option>
+                        <option value="dermato">Dermatologie</option>
+                        <option value="oculiste">Oculiste</option>
+                        <option value="pediatre">Pédiatrie</option>
+                    </select>
+                </div>
+
+                <div class="datetime-group">
+                    <div class="form-group">
+                        <label>
+                            <span>📅</span>
+                            Date du RV
+                        </label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span>🕐</span>
+                            Heure du RV
+                        </label>
+                        <input type="time" id="time" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <span>📝</span>
+                        Motif de la Consultation
+                    </label>
+                    <textarea id="motif" placeholder="Décrivez le motif de votre consultation..." required></textarea>
+                </div>
+
+                <div class="info-box">
+                    <span style="font-size: 24px;">ℹ️</span>
+                    <p>
+                        <strong>Statut:</strong> Votre demande sera enregistrée avec le statut "En attente" et examinée par le médecin.
+                    </p>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel" onclick="annuler()">
+                        ⊗ Annuler
+                    </button>
+                    <button type="submit" class="btn btn-submit">
+                        ✓ Soumettre la Demande
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="help-section">
+            <h2>
+                <span>💡</span>
+                Aide
+            </h2>
+            <p>Remplissez le formulaire ci-contre pour demander un rendez-vous auprès d'un spécialiste.</p>
+            
+            <h3 style="font-size: 15px; color: #1f2937; margin-bottom: 12px;">Comment cela fonctionne:</h3>
+            <ul class="help-steps">
+                <li class="help-step">
+                    <span class="step-number">1</span>
+                    <span>Sélectionnez un patient</span>
+                </li>
+                <li class="help-step">
+                    <span class="step-number">2</span>
+                    <span>Choisissez la spécialité</span>
+                </li>
+                <li class="help-step">
+                    <span class="step-number">3</span>
+                    <span>Définissez la date et l'heure</span>
+                </li>
+                <li class="help-step">
+                    <span class="step-number">4</span>
+                    <span>Attendez la confirmation</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Définir la date minimale à aujourd'hui
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+
+        // Gestion du formulaire
+        document.getElementById('rvForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const patient = document.getElementById('patient').value;
+            const specialty = document.getElementById('specialty').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const motif = document.getElementById('motif').value;
+
+            if (!patient || !specialty || !date || !time || !motif) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+
+            // Animation de succès
+            const btn = document.querySelector('.btn-submit');
+            btn.textContent = '✓ Demande envoyée !';
+            btn.style.background = '#10b981';
+            
+            setTimeout(() => {
+                alert('Votre demande de rendez-vous a été envoyée avec succès !');
+                this.reset();
+                btn.textContent = '✓ Soumettre la Demande';
+                btn.style.background = '#2563eb';
+            }, 1000);
+        });
+
+        function annuler() {
+            if (confirm('Êtes-vous sûr de vouloir annuler ? Toutes les données saisies seront perdues.')) {
+                document.getElementById('rvForm').reset();
+            }
+        }
+
+        // Animation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.form-section, .help-section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    section.style.transition = 'all 0.5s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
