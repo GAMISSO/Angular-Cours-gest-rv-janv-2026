@@ -1,0 +1,92 @@
+
+
+<div class="container-fluid py-3">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-list"></i>
+            <h4 class="mb-0"><i class="bi bi-list-check"></i> {{ title }}</h4>
+        </div>
+        <a routerLink="/private/form-demande" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Nouvelle Demande
+        </a>
+        
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Filtrer par statut</label>
+                    <select class="form-select">
+                        <option>Tous les statuts</option>
+                        <option>En attente</option>
+                        <option>Acceptée</option>
+                        <option>Refusée</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Filtrer par spécialité</label>
+                    <select class="form-select">
+                        <option>Toutes les spécialités</option>
+                        <option>Cardiologue</option>
+                        <option>Médecin Généraliste</option>
+                        <option>Dermatologue</option>
+                        <option>Oculiste</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Spécialité</th>
+                            <th><i class="bi bi-calendar-event"></i> Date Demandée</th>
+                            <th><i class="bi bi-clock"></i> Heure</th>
+                            <th><i class="bi bi-info-circle"></i> Statut</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for($demandes of demandes;track  $demandes.id){
+                            <tr>
+                                <td>{{ $demandes.specialite }}</td>
+                                <td>{{ $demandes.dateDemande }}</td>
+                                <td>{{ $demandes.heure }}</td>
+                                <td><span class="badge badge-warning">{{ $demandes.statut }}</span></td>
+                                <td class="text-end">
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye"></i> Voir
+                                    </button>
+                                </td>
+                            </tr>
+                        }@empty {
+                            <tr>
+                                <td colspan="5" class="text-center">Aucune demande trouvée</td>
+                            </tr>
+                        }
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <nav class="d-flex justify-content-center mt-3">
+        <ul class="pagination mb-0">
+            <li class="page-item">
+                <a class="page-link" href="#">Précédent</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Suivant</a>
+            </li>
+        </ul>
+    </nav>
+</div>

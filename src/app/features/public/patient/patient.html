@@ -1,0 +1,61 @@
+<div class="container-fluid py-4">
+    <h1>Créer un Nouveau Patient</h1>
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="numeroPatient">Numéro Patient</label>
+                            <input class="form-control" id="numeroPatient" type="text" placeholder="PAT-001" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="nomPatient">Nom</label>
+                            <input class="form-control" id="nomPatient" type="text" placeholder="Dupont" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="prenomPatient">Prénom</label>
+                            <input class="form-control" id="prenomPatient" type="text" placeholder="Jean" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="telephonePatient">Téléphone</label>
+                            <input class="form-control" id="telephonePatient" type="tel"
+                                placeholder="+221 77 123 45 67" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="adressePatient">Adresse</label>
+                            <input class="form-control" id="adressePatient" type="text"
+                                placeholder="Rue, Code postal, Ville" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="antecedentsPatient">Antécédents Médicaux</label>
+                            <textarea class="form-control" id="antecedentsPatient" rows="4"
+                                placeholder="Décrivez vos antécédents médicaux, allergies, maladies chroniques..."></textarea>
+                        </div>
+                        <div class="col-12 d-flex justify-content-end gap-2">
+                            <button class="btn btn-secondary" type="button">Annuler</button>
+                            <button class="btn btn-primary" type="submit">Créer Patient</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">Informations</div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">Veuillez remplir tous les champs avec les informations correctes du
+                        patient.</p>
+                    <h6 class="fw-bold mb-2">Champs requis</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">Numéro Patient</li>
+                        <li class="mb-2">Nom</li>
+                        <li class="mb-2">Prénom</li>
+                        <li class="mb-2">Téléphone</li>
+                        <li>Adresse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

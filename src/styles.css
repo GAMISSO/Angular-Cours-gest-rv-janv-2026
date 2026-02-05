@@ -1,448 +1,501 @@
 /* You can add global styles to this file, and also import other style files */
+/* ===================================
+   Gestion RV Médicaux - CSS Personnalisé
+   =================================== */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+/* ===== Global Styles ===== */
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
 
-        .navbar {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+/* ===== Login Card ===== */
+.login-card {
+    max-width: 450px;
+    width: 100%;
+    border-radius: 0.5rem;
+}
 
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+.login-card .card-body {
+    background: #fff;
+}
 
-        .navbar h1 {
-            font-size: 18px;
-            font-weight: 600;
-        }
+/* ===== Navbar Styles ===== */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            text-decoration: none;
-        }
-        .nav-links {
-            list-style: none;
-        }
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
 
-        .nav-link {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
+.navbar .nav-link {
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+}
 
-        .nav-link:hover, .nav-link.active {
-            background: rgba(255,255,255,0.15);
-            color: white;
-        }
+.navbar .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
 
-        .patient-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
+.navbar .nav-link.active {
+    border-bottom: 3px solid rgba(255, 255, 255, 0.8);
+}
 
-        .patient-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
+/* ===== Card Styles ===== */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0.5rem;
+}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 30px;
-        }
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
 
-        h2 {
-            font-size: 28px;
-            color: #1f2937;
-            margin-bottom: 30px;
-        }
+.card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    font-weight: 600;
+    padding: 1rem;
+}
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+/* ===== Stats Cards ===== */
+.card-body .d-flex {
+    margin-bottom: 0.5rem;
+}
 
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: transform 0.3s;
-        }
+.card-body h6 {
+    font-weight: 600;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
 
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+.card-body h3 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
 
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
+/* ===== Table Styles ===== */
+.table {
+    font-size: 0.95rem;
+}
 
-        .stat-icon.blue { background: #dbeafe; color: #2563eb; }
-        .stat-icon.green { background: #d1fae5; color: #059669; }
-        .stat-icon.sky { background: #e0f2fe; color: #0284c7; }
-        .stat-icon.red { background: #fee2e2; color: #dc2626; }
+.table thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
 
-        .stat-info h3 {
-            font-size: 14px;
-            color: #6b7280;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
+.table thead th {
+    font-weight: 600;
+    color: #495057;
+    border: none;
+    padding: 1rem 0.5rem;
+}
 
-        .stat-number {
-            font-size: 32px;
-            font-weight: 700;
-            color: #1f2937;
-        }
+.table tbody td {
+    padding: 1rem 0.5rem;
+    vertical-align: middle;
+    border-color: #e9ecef;
+}
 
-        .stat-details {
-            font-size: 13px;
-            color: #9ca3af;
-            margin-top: 5px;
-        }
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
 
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+/* ===== Avatar Styles ===== */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: white;
+}
 
-        .section {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+/* ===== Badge Styles ===== */
+.badge {
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+}
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f3f4f6;
-        }
+.badge-success {
+    background-color: var(--success-color);
+}
 
-        .section-header h3 {
-            font-size: 18px;
-            color: #1f2937;
-            font-weight: 600;
-        }
+.badge-danger {
+    background-color: var(--danger-color);
+}
 
-        .section.blue .section-header { color: #2563eb; }
-        .section.green .section-header { color: #059669; }
+.badge-warning {
+    background-color: var(--warning-color);
+    color: #000;
+}
 
-        .appointment-card {
-            background: #f9fafb;
-            border-left: 4px solid #2563eb;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
+.badge-info {
+    background-color: var(--info-color);
+    color: #000;
+}
 
-        .appointment-date {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #dbeafe;
-            color: #2563eb;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            width: fit-content;
-        }
+/* ===== Form Styles ===== */
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
 
-        .appointment-title {
-            font-weight: 600;
-            color: #1f2937;
-            margin: 10px 0 5px 0;
-        }
+.form-control,
+.form-select {
+    border: 1px solid #ddd;
+    border-radius: 0.35rem;
+    padding: 0.6rem 0.75rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .appointment-doctor {
-            font-size: 14px;
-            color: #6b7280;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
 
-        .appointment-time {
-            font-size: 13px;
-            color: #9ca3af;
-            margin-top: 5px;
-        }
+/* ===== Button Styles ===== */
+.btn {
+    font-weight: 600;
+    border-radius: 0.35rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
 
-        .action-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
 
-        .action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            background: white;
-            color: #2563eb;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 15px;
-            font-weight: 500;
-        }
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+}
 
-        .action-btn:hover {
-            background: #f0f9ff;
-            border-color: #2563eb;
-        }
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
 
-        @media (max-width: 768px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
 
-        .navbar {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            padding: 15px 30px;
-        }
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+}
 
-        .form-section {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+/* ===== Appointment Item ===== */
+.appointment-item {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color);
+}
 
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f3f4f6;
-        }
+.appointment-item h6 {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
 
-        .header h1 {
-            font-size: 24px;
-            color: #1f2937;
-        }
+/* ===== Alert Styles ===== */
+.alert {
+    border-radius: 0.35rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+}
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+.alert-info {
+    background-color: #e7f3ff;
+    border-color: #b3d9ff;
+    color: #004085;
+}
 
-        .form-group label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 10px;
-        }
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
 
-        .form-group select,
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeaa7;
+    color: #856404;
+}
 
-        .form-group select:focus,
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
 
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-            font-family: inherit;
-        }
+/* ===== Icon Styles ===== */
+i {
+    margin-right: 0.3rem;
+}
 
-        .datetime-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+/* ===== Dropdown Styles ===== */
+.dropdown-menu {
+    border-radius: 0.35rem;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-        .info-box {
-            background: #eff6ff;
-            border-left: 4px solid #2563eb;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
+.dropdown-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+}
 
-        .info-box p {
-            font-size: 14px;
-            color: #1e40af;
-            line-height: 1.6;
-        }
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
 
-        .help-section {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
+/* ===== Min Height ===== */
+.min-vh-100 {
+    min-height: 100vh;
+}
 
-        .help-section h2 {
-            font-size: 18px;
-            color: #1f2937;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
 
-        .help-section p {
-            font-size: 14px;
-            color: #6b7280;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
+    .table {
+        font-size: 0.85rem;
+    }
 
-        .help-steps {
-            list-style: none;
-        }
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
 
-        .help-step {
-            padding: 12px;
-            background: #f9fafb;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: #374151;
-        }
+    .container-fluid {
+        padding: 1rem;
+    }
+}
 
-        .step-number {
-            width: 28px;
-            height: 28px;
-            background: #2563eb;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
+/* ===== Print Styles ===== */
+@media print {
+    .navbar,
+    .btn,
+    .dropdown-toggle {
+        display: none !important;
+    }
 
-        .form-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #f3f4f6;
-        }
+    .card {
+        page-break-inside: avoid;
+    }
+}
 
-        .btn {
-            flex: 1;
-            padding: 14px;
-            border-radius: 8px;
-            border: none;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
 
-        .btn-cancel {
-            background: #f3f4f6;
-            color: #6b7280;
-        }
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
 
-        .btn-cancel:hover {
-            background: #e5e7eb;
-        }
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
 
-        .btn-submit {
-            background: #2563eb;
-            color: white;
-        }
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
-        .btn-submit:hover {
-            background: #1d4ed8;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
+/* ===== Animation ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+.card {
+    animation: fadeIn 0.3s ease-in;
+}
 
-            .datetime-group {
-                grid-template-columns: 1fr;
-            }
-        }
+/* ===== Utilities ===== */
+.text-muted {
+    color: #6c757d !important;
+}
+
+.bg-opacity-25 {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.bg-opacity-10 {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Shadow Utilities ===== */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* ===== Status Colors ===== */
+.status-pending {
+    color: #ffc107;
+    font-weight: 600;
+}
+
+.status-approved {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.status-rejected {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.status-completed {
+    color: #0dcaf0;
+    font-weight: 600;
+}
+
+/* ===== Dossier Médical Styles ===== */
+.nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.nav-tabs .nav-link {
+    color: #495057;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.nav-tabs .nav-link.active {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-pane {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* ===== Modal Styles ===== */
+.modal-content {
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    padding: 1rem;
+}
+
+/* ===== Medicament Input Styles ===== */
+#medicamentsList .card-body {
+    padding: 0.75rem;
+}
+
+#medicamentsList .form-control-sm {
+    font-size: 0.875rem;
+}
+
+/* ===== Consultation Card ===== */
+.card.border-0 {
+    border-left: 4px solid var(--primary-color) !important;
+}
+
+/* ===== Table in Ordonnances ===== */
+.table-responsive {
+    border-radius: 0.25rem;
+}
+
+.table-sm thead {
+    background-color: #f8f9fa;
+}
+
+.table-sm td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* ===== Badge Colors in Medical Records ===== */
+.badge-medical-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge-medical-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-medical-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
