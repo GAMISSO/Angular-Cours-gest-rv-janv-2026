@@ -62,15 +62,18 @@
                                     <td>{{ $demandes.dateDemande }}</td>
                                     <td>{{ $demandes.heure }}</td>
                                     <td>
-                                        @if($demandes.statut === 'Acceptée'){
+                                        @switch ($demandes.statut) {
+                                            @case( 'Acceptée'){
                                             <span class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>
-                                        } @else if($demandes.statut === 'Refusée'){
+                                        } @case( 'Refusée'){
                                             <span class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
-                                        } @else if($demandes.statut === 'En Attente'){
+                                        } @case( 'En Attente'){
                                             <span class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
-                                        } @else {
+                                        } @default {
                                             <span class="badge badge-secondary">{{ $demandes.statut }}</span>
                                         } 
+                                        }
+                                        
                                     </td>
                                     <td class="text-end">
                                         <button class="btn btn-outline-primary btn-sm">
