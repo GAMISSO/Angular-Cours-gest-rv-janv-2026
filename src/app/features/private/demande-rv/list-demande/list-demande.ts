@@ -1,20 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormDemande } from '../form-demande/form-demande';
 import { RouterLink } from '@angular/router';
-import { SpecialiteModel } from '../../models/demande.model';
-import { DemandeListRVModel, StatutDemandeModel } from '../../models/demande.model';
+import { DemandeListeReponse, DemandeListRVModel, DemandeRVFilterModel } from '../../models/demande.model';
+import { MOCK_DEMANDES } from '../../../../mocks/demande.mock';
+import { DemandeService } from '../services/demande.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-list-demande',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './list-demande.html',
   styleUrl: './list-demande.css',
 })
-export class ListDemande {
+export class ListDemande implements OnInit {
   title: string = 'Mes Demandes de RV';
-  demandes: DemandeListRVModel[] = [
-    { id: 1, dateDemande: '2024-07-01', statut: StatutDemandeModel.EN_ATTENTE, heure: '10:00' , specialite: SpecialiteModel.CARDIOLOGIE},
-    { id: 2, dateDemande: '2024-07-05', statut: StatutDemandeModel.ACCEPTER, heure: '14:30', specialite: SpecialiteModel.GYNECOLOGIE },
-    { id: 3, dateDemande: '2024-07-10', statut: StatutDemandeModel.REJETER, heure: '09:15', specialite: SpecialiteModel.DERMATOLOGIE },
-  ]
+  demandes?: DemandeListeReponse;
+  filter: DemandeRVFilterModel = {
+    statut: 'En Attente',
+    specialite: ''
+
+  };
+  constructor(private demandeService: DemandeService) {
+
+  }//Injections de dépendance
+
+  ngOnInit(): void {
+    this.loadDemandes();
+  }
+
+  private loadDemandes(): void {
+    this.demandes = this.demandeService.getDemandes(this.filter);
+  }
+
+  onFilterStatusChange(): void {
+    this.loadDemandes();
+
+  }
+  onFilterSpecialiteChange(): void {
+    this.loadDemandes();
+  }
 }
