@@ -61,19 +61,11 @@
                                     <td>{{ $demandes.specialite }}</td>
                                     <td>{{ $demandes.dateDemande }}</td>
                                     <td>{{ $demandes.heure }}</td>
-                                    <td>
-                                        @switch ($demandes.statut) {
-                                            @case( 'Acceptée'){
-                                            <span class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>
-                                        } @case( 'Refusée'){
-                                            <span class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
-                                        } @case( 'En Attente'){
-                                            <span class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
-                                        } @default {
-                                            <span class="badge badge-secondary">{{ $demandes.statut }}</span>
-                                        } 
-                                        }
-                                        
+                                    <td [ngSwitch]="$demandes.statut">
+                                            <span *ngSwitchCase="'Acceptée'" class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>
+                                            <span *ngSwitchCase="'Refusée'" class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
+                                            <span *ngSwitchCase="'En Attente'" class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
+                                            <span *ngSwitchDefault class="badge badge-secondary">{{ $demandes.statut }}</span>
                                     </td>
                                     <td class="text-end">
                                         <button class="btn btn-outline-primary btn-sm">
