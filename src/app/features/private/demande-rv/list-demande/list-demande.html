@@ -42,7 +42,7 @@
 
     <div class="card shadow-sm">
         <div class="card border-0 shadow-sm">
-            @if(demandes!=undefined && demandes.data.length > 0) {
+            @if(demandes!=undefined && demandes.data!=undefined && demandes.data.length > 0) {
                 <div class="table-responsive">
                     
                     <table class="table table-hover mb-0">
@@ -62,11 +62,11 @@
                                     <td>{{ $demandes.dateDemande }}</td>
                                     <td>{{ $demandes.heure }}</td>
                                     <td>
-                                        @if($demandes.statut == 'Acceptée'){
+                                        @if($demandes.statut === 'Acceptée'){
                                             <span class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>
-                                        } @else if($demandes.statut == 'Refusée'){
+                                        } @else if($demandes.statut === 'Refusée'){
                                             <span class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
-                                        } @else if($demandes.statut == 'En Attente'){
+                                        } @else if($demandes.statut === 'En Attente'){
                                             <span class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
                                         } @else {
                                             <span class="badge badge-secondary">{{ $demandes.statut }}</span>

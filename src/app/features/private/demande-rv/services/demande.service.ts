@@ -10,6 +10,9 @@ export class DemandeService {
   constructor() { }
 
   public getDemandes(filteDemander: DemandeRVFilterModel): DemandeListeReponse {
+    setTimeout(() => {
+      console.log('Simulating async operation')
+    }, 1000);
     let demandes = [...MOCK_DEMANDES];
     if (filteDemander.statut) {
       demandes = demandes.filter(demande => demande.statut === filteDemander.statut);
@@ -22,6 +25,7 @@ export class DemandeService {
     const startIndex = (page - 1) * size;
     const endIndex = startIndex + size;
     const totalPages = Math.ceil(demandes.length / size);
+    
     const pages: number[] = [];
     for (let i = 1; i <= totalPages; i++) {
       pages.push(i);
