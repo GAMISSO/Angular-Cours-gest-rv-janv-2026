@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MOCK_DEMANDES } from '../../../../mocks/demande.mock';
+import { MOCK_DEMANDES } from '@mocks';
 import { DemandeListeReponse, DemandeListRVModel, DemandeRVFilterModel } from '../../models/demande.model';
 import { environment } from '../../../../../environments/environment';
 
@@ -26,12 +26,9 @@ export class DemandeService {
     const endIndex = startIndex + size;
     const totalPages = Math.ceil(demandes.length / size);
     
-    const pages: number[] = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(i);
-    }
+    const pages: number[] = Array.from({ length: totalPages }, (_, i) => i + 1);
     const paginatedDemandes = demandes.slice(startIndex, endIndex);
-    return {data: paginatedDemandes, totalPage: 1, currentPage: 1, totalItems: demandes.length, pages: [1], size: demandes.length};
+    return {data: paginatedDemandes, totalPage: totalPages, currentPage: page, totalItems: demandes.length, pages: pages, size: size};
     //logique pour récupérer les demandes depuis une API ou une base de données
   }
 }

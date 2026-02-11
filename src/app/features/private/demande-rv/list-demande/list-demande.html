@@ -17,7 +17,7 @@
             <div class="row g-3">
                 <div class="col-12 col-md-6">
                     <label class="form-label">Filtrer par statut</label>
-                    <select class="form-select" [(ngModel)]="filter.statut" (change)="onFilterStatusChange()" id="filterStatuts">
+                    <select class="form-select" [(ngModel)]="filter.statut" (change)="onFilterStatusAndSpecialiteChange()" id="filterStatuts">
                         <option value="">Tous les statuts</option>
                         <option value="En Attente">En attente</option>
                         <option value="Acceptée">Acceptée</option>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="form-label">Filtrer par spécialité</label>
-                    <select class="form-select" [(ngModel)]="filter.specialite" (change)="onFilterSpecialiteChange()" id="filterSpecialites">
+                    <select class="form-select" [(ngModel)]="filter.specialite" (change)="onFilterStatusAndSpecialiteChange()" id="filterSpecialites">
                         <option value="">Toutes les spécialités</option>
                         <option value="Cardiologie">Cardiologue</option>
                         <option value="Dermatologie">Dermatologue</option>
@@ -61,11 +61,21 @@
                                     <td>{{ $demandes.specialite }}</td>
                                     <td>{{ $demandes.dateDemande }}</td>
                                     <td>{{ $demandes.heure }}</td>
-                                    <td [ngSwitch]="$demandes.statut">
-                                            <span *ngSwitchCase="'Acceptée'" class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>
-                                            <span *ngSwitchCase="'Refusée'" class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
-                                            <span *ngSwitchCase="'En Attente'" class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
-                                            <span *ngSwitchDefault class="badge badge-secondary">{{ $demandes.statut }}</span>
+                                    <td >
+                                        @switch ($demandes.statut) {
+                                           @case ("Acceptée") { <span  class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>}
+                                           @case ("Refusée") {
+                                                <span class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
+                                           }
+                                            @case ("En Attente") {
+                                                <span  class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
+                                            }
+                                            @default {
+                                                <span  class="badge badge-secondary">{{ $demandes.statut }}</span>
+                                            }
+                                            
+                                        }
+                                            
                                     </td>
                                     <td class="text-end">
                                         <button class="btn btn-outline-primary btn-sm">
@@ -87,14 +97,13 @@
                 <nav class="d-flex justify-content-center mt-3">
                     <ul class="pagination mb-0">
                         <li class="page-item">
-                            <a class="page-link" href="#">Précédent</a>
+                            <a class="page-link" [class.disabled]="desactivePrecedent" (click)="onPaginate(demandes.currentPage - 1)" href="#">Précédent</a>
                         </li>
-                        @for(indexPage of demandes?.pages; track indexPage){
-                            <li class="page-item " [class.active]="indexPage === demandes?.currentPage"><a class="page-link" href="#">{{ indexPage }}</a></li>
+                        @for (page of demandes.pages; track page) {
+                            <li class="page-item " [class.active]="page === demandes?.currentPage"><a class="page-link" href="#" (click)="onPaginate(page)">{{ page }}</a></li>
                         }
-                        
                         <li class="page-item">
-                            <a class="page-link" href="#">Suivant</a>
+                            <a class="page-link" [class.disabled]="desactiveSuivant" (click)="onPaginate(demandes.currentPage + 1)" href="#">Suivant</a>
                         </li>
                     </ul>
                 </nav>

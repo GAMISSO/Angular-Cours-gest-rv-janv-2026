@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { Security } from 'src/app/core/services/security';
 
 @Component({
   selector: 'app-header-private',
-  imports: [RouterLink,RouterLinkActive],
+  imports: [RouterLink,RouterLinkActive,],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
+  constructor(
+    private securityService: Security,
+    private router: Router
+  ) {}
+
+  logout(): void {
+    this.securityService.logout();
+    this.router.navigate(['/public/login']);
+  }
 
 }

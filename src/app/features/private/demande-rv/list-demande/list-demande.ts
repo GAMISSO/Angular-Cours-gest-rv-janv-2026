@@ -5,10 +5,11 @@ import { DemandeListeReponse, DemandeListRVModel, DemandeRVFilterModel } from '.
 import { MOCK_DEMANDES } from '../../../../mocks/demande.mock';
 import { DemandeService } from '../services/demande.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-list-demande',
-  imports: [RouterLink, FormsModule],
+  imports: [CommonModule,RouterLink, FormsModule],
   templateUrl: './list-demande.html',
   styleUrl: './list-demande.css',
 })
@@ -32,11 +33,21 @@ export class ListDemande implements OnInit {
     this.demandes = this.demandeService.getDemandes(this.filter);
   }
 
-  onFilterStatusChange(): void {
+  onFilterStatusAndSpecialiteChange(): void {
     this.loadDemandes();
 
   }
-  onFilterSpecialiteChange(): void {
+
+  onPaginate(page: number): void {
+    this.filter.page = page;
     this.loadDemandes();
+  }
+
+   get desactivePrecedent(): boolean {
+    return !(this.demandes && this.demandes.currentPage > 1) ? true : false;
+  }
+
+  get desactiveSuivant(): boolean {
+    return !(this.demandes && this.demandes.currentPage < this.demandes.totalPage) ? true : false;
   }
 }
