@@ -11,36 +11,15 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ AsyncPipe],
+  imports: [AsyncPipe, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnDestroy,OnInit {
+export class AppComponent {
   protected readonly title = signal('ges-rv');
-  helloObservable$?: Observable<string>;
-
-  constructor() {
-    //Observable qui emet une lettre du message "Hello,Angular!" toutes les secondes
-    this.helloObservable$ = new Observable<string>((subscriber:Subscriber<string>) => {
-      const message = 'Hello, Angular!';
-      for (let i = 0; i < message.length; i++) {
-        setTimeout(() => {
-          subscriber.next(message[i]);
-        }, 1000 * (i + 1));
-      }
-      setInterval(() => {
-        subscriber.complete();
-      }, 1000 * (message.length + 1)); // pour éviter que l'observable ne se termine
-  });
-
-  //Declaration de deux observateur
   
-  }
+
+ 
   
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  
 }

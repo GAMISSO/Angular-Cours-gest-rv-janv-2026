@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormDemande } from '../form-demande/form-demande';
 import { RouterLink } from '@angular/router';
 import { DemandeListeReponse, DemandeListRVModel, DemandeRVFilterModel } from '../../models/demande.model';
@@ -6,6 +6,8 @@ import { MOCK_DEMANDES } from '../../../../mocks/demande.mock';
 import { DemandeService } from '../services/demande.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DemandeMockService } from '../services/demande.mock.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-demande',
@@ -17,12 +19,12 @@ import { CommonModule } from '@angular/common';
 export class ListDemande implements OnInit {
   title: string = 'Mes Demandes de RV';
   demandes?: DemandeListeReponse;
+  private subscription: Subscription = new Subscription();
   filter: DemandeRVFilterModel = {
     statut: 'En Attente',
     specialite: ''
-
   };
-  constructor(private demandeService: DemandeService) {
+  constructor(private demandeService: DemandeMockService,private cdr:ChangeDetectorRef) {
 
   }//Injections de dépendance
 
@@ -31,7 +33,18 @@ export class ListDemande implements OnInit {
   }
 
   private loadDemandes(): void {
-    this.demandes = this.demandeService.getDemandes(this.filter);
+    let demandes$:Observable<DemandeListeReponse> = this.demandeService.getDemandes(this.filter);
+    //souscription à l'observable pour récupérer les données
+    demandes$.subscribe({
+      next: (data:DemandeListeReponse) => {
+        this.demandes = data;
+        this.cdr.markForCheck(); // Manually trigger change detection
+      },
+      error: (err) => console.error('Error fetching demandes:', err),
+      complete: () => {
+        console.log('Finished fetching demandes');
+      }
+    });
   }
 
   onFilterStatusAndSpecialiteChange(): void {
