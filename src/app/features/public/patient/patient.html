@@ -4,37 +4,114 @@
         <div class="col-12 col-lg-8">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form class="row g-3">
+                    @if(messageSucess) {
+                        <div class="alert alert-success" *ngIf="messageSucess">
+                            {{ messageSucess }}
+                        </div>
+                    }
+                    <form class="row g-3" [formGroup]="patientForm" (ngSubmit)="onSubmit()">
                         <div class="col-md-6">
                             <label class="form-label" for="numeroPatient">Numéro Patient</label>
-                            <input class="form-control" id="numeroPatient" type="text" placeholder="PAT-001" />
+                            <input class="form-control" id="numeroPatient" type="text" placeholder="PAT-001" formControlName="numero"
+                            [ngClass]="{
+                                'is-invalid': isFieldInvalid('numero'),
+                                'is-valid': !isFieldInvalid('numero')
+                            }"
+                            />
+                            @if (isFieldInvalid('numero')) {
+                                @if (f['numero'].errors?.['required']) 
+                                {
+                                    <div class="text-danger mt-1" >Le numéro patient est requis.</div>
+                                }
+                                @if (f['numero'].errors?.['pattern']) 
+                                {
+                                    <div class="text-danger mt-1" >Le numéro patient doit suivre le format PAT-XXX.</div>
+                                }
+                            }
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="nomPatient">Nom</label>
-                            <input class="form-control" id="nomPatient" type="text" placeholder="Dupont" />
+                            <input class="form-control" id="nomPatient" type="text" placeholder="Dupont" formControlName="nom"
+                            [ngClass]="{
+                                'is-invalid': isFieldInvalid('nom'),
+                                'is-valid': !isFieldInvalid('nom')
+                            }"
+                            />
+                            @if (isFieldInvalid('nom')) {
+                                @if (f['nom'].errors?.['required']) 
+                                {
+                                    <div class="text-danger mt-1" >Le nom est requis.</div>
+                                }
+                                @if (f['nom'].errors?.['minlength']) 
+                                {
+                                    <div class="text-danger mt-1" >Le nom doit contenir au moins 2 caractères.</div>
+                                }
+                            }
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="prenomPatient">Prénom</label>
-                            <input class="form-control" id="prenomPatient" type="text" placeholder="Jean" />
+                            <input class="form-control" id="prenomPatient" type="text" placeholder="Jean" formControlName="prenom"
+                            [ngClass]="{
+                                'is-invalid': isFieldInvalid('prenom'),
+                                'is-valid': !isFieldInvalid('prenom')
+                            }"
+                            />
+                            @if (isFieldInvalid('prenom')) {
+                                @if (f['prenom'].errors?.['required']) 
+                                {
+                                    <div class="text-danger mt-1" >Le prénom est requis.</div>
+                                }
+                                @if (f['prenom'].errors?.['minlength']) 
+                                {
+                                    <div class="text-danger mt-1" >Le prénom doit contenir au moins 2 caractères.</div>
+                                }
+                            }
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="telephonePatient">Téléphone</label>
-                            <input class="form-control" id="telephonePatient" type="tel"
-                                placeholder="+221 77 123 45 67" />
+                            <input class="form-control" 
+                            id="telephonePatient" 
+                            type="tel"
+                            placeholder="+221 77 123 45 67" 
+                            formControlName="telephone"
+                            [ngClass]="{
+                                'is-invalid': isFieldInvalid('telephone'),
+                                'is-valid': !isFieldInvalid('telephone')
+                            }"
+                            />
+                            @if (isFieldInvalid('telephone')) {
+                                @if (f['telephone'].errors?.['required']) 
+                                {
+                                    <div class="text-danger mt-1" >Le téléphone est requis.</div>
+                                }
+                                
+                                
+                            }
                         </div>
                         <div class="col-12">
                             <label class="form-label" for="adressePatient">Adresse</label>
                             <input class="form-control" id="adressePatient" type="text"
-                                placeholder="Rue, Code postal, Ville" />
+                                placeholder="Rue, Code postal, Ville" formControlName="adresse"
+                                [ngClass]="{
+                                'is-invalid': isFieldInvalid('adresse'),
+                                'is-valid': !isFieldInvalid('adresse')
+                            }"
+                                />
+                            @if (isFieldInvalid('adresse')) {
+                                @if (f['adresse'].errors?.['required']) 
+                                {
+                                    <div class="text-danger mt-1" >L'adresse est requise.</div>
+                                }
+                            }
                         </div>
                         <div class="col-12">
                             <label class="form-label" for="antecedentsPatient">Antécédents Médicaux</label>
                             <textarea class="form-control" id="antecedentsPatient" rows="4"
-                                placeholder="Décrivez vos antécédents médicaux, allergies, maladies chroniques..."></textarea>
+                                placeholder="Décrivez vos antécédents médicaux, allergies, maladies chroniques..." formControlName="antecedents"></textarea>
                         </div>
                         <div class="col-12 d-flex justify-content-end gap-2">
-                            <button class="btn btn-secondary" type="button">Annuler</button>
-                            <button class="btn btn-primary" type="submit">Créer Patient</button>
+                            <button class="btn btn-secondary" type="button" (click)="onReset()">Annuler</button>
+                            <button class="btn btn-primary" type="submit" [disabled]="patientForm.invalid">Créer Patient</button>
                         </div>
                     </form>
                 </div>

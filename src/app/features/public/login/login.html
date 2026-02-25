@@ -20,8 +20,13 @@
                     required
                     minlength="6"
                     #loginCrl="ngModel"
-                    [(ngModel)]="userLogin.email" name="email">
-                    @if(loginCrl.invalid && (loginCrl.dirty || loginCrl.touched)) {
+                    [(ngModel)]="userLogin.email" 
+                    [ngClass]="{
+                        'is-invalid': isFieldInvalid('email', loginForm),
+                        'is-valid': ! isFieldInvalid('email', loginForm)
+                    }"
+                    name="email">
+                    @if(isFieldInvalid('email', loginForm)) {
                         @if (loginCrl.errors?.['required']) 
                         {
                             <div class="text-danger mt-1" >Le login est requis.</div>
@@ -43,8 +48,13 @@
                     <input type="password" class="form-control" name="password" placeholder="Mot de passe" 
                     required
                     #passwordCrl="ngModel"
-                    [(ngModel)]="userLogin.password" name="password">
-                    @if (passwordCrl.invalid && (passwordCrl.dirty || passwordCrl.touched)) {
+                    [(ngModel)]="userLogin.password" 
+                    [ngClass]="{
+                        'is-invalid': isFieldInvalid('password', loginForm),
+                        'is-valid': ! isFieldInvalid('password', loginForm)
+                    }"
+                    name="password">
+                    @if (isFieldInvalid('password', loginForm)) {
                         @if (passwordCrl.errors?.['required']) 
                         {
                             <div class="text-danger mt-1" >Le mot de passe est requis.</div>

@@ -34,6 +34,9 @@ export class Login {
     } 
   }
 
-  
+  isFieldInvalid(fieldName: string, loginForm: NgForm): boolean {
+    loginForm.controls[fieldName]
+    return !!(loginForm.controls[fieldName] && loginForm.controls[fieldName].invalid && (loginForm.controls[fieldName].dirty || loginForm.controls[fieldName].touched));
+  }
 
 }
