@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormDemande } from '../form-demande/form-demande';
 import { RouterLink } from '@angular/router';
 import { DemandeListeReponse, DemandeListRVModel, DemandeRVFilterModel } from '../../models/demande.model';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule,RouterLink, FormsModule],
   templateUrl: './list-demande.html',
   styleUrl: './list-demande.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListDemande implements OnInit {
   title: string = 'Mes Demandes de RV';
