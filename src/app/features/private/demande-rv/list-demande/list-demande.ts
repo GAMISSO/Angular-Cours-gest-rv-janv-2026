@@ -11,10 +11,11 @@ import { Observable, Subscription } from 'rxjs';
 import { DEMANDE_SERVICE_TOKEN, DemandeServiceInterface } from '../services/interface/demande.service.interface';
 import { Alert } from 'src/app/shared/components/alert/alert';
 import { Badge } from 'src/app/shared/components/badge/badge';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-list-demande',
-  imports: [CommonModule,RouterLink, FormsModule,Alert,Badge],
+  imports: [CommonModule, RouterLink, FormsModule, Alert, Badge, PaginationComponent],
   templateUrl: './list-demande.html',
   styleUrl: './list-demande.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -27,7 +28,7 @@ export class ListDemande implements OnInit {
     statut: 'En Attente',
     specialite: ''
   };
-  constructor(@Inject(DEMANDE_SERVICE_TOKEN) private demandeService: DemandeServiceInterface,private cdr:ChangeDetectorRef) {
+  constructor(@Inject(DEMANDE_SERVICE_TOKEN) private demandeService: DemandeServiceInterface, private cdr: ChangeDetectorRef) {
 
   }//Injections de dépendance
 
@@ -36,10 +37,10 @@ export class ListDemande implements OnInit {
   }
 
   private loadDemandes(): void {
-    let demandes$:Observable<DemandeListeReponse> = this.demandeService.getDemandes(this.filter);
+    let demandes$: Observable<DemandeListeReponse> = this.demandeService.getDemandes(this.filter);
     //souscription à l'observable pour récupérer les données
     demandes$.subscribe({
-      next: (data:DemandeListeReponse) => {
+      next: (data: DemandeListeReponse) => {
         this.demandes = data;
         this.cdr.markForCheck(); // Manually trigger change detection
       },
@@ -60,7 +61,7 @@ export class ListDemande implements OnInit {
     this.loadDemandes();
   }
 
-   get desactivePrecedent(): boolean {
+  get desactivePrecedent(): boolean {
     return !(this.demandes && this.demandes.currentPage > 1) ? true : false;
   }
 

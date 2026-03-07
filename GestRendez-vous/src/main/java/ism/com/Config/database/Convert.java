@@ -1,4 +1,8 @@
 package ism.com.Config.database;
 
-public interface Convert {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public interface Convert<T> {
+  T toEntity(ResultSet rs) throws SQLException;
 }
