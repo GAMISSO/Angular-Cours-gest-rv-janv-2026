@@ -62,19 +62,7 @@
                                     <td>{{ $demandes.dateDemande }}</td>
                                     <td>{{ $demandes.heure }}</td>
                                     <td >
-                                        @switch ($demandes.statut) {
-                                           @case ("Acceptée") { <span  class="badge badge-success"><i class="bi bi-check-circle"></i>{{ $demandes.statut }}</span>}
-                                           @case ("Refusée") {
-                                                <span class="badge badge-danger"><i class="bi bi-x-circle"></i>{{ $demandes.statut }}</span>
-                                           }
-                                            @case ("En Attente") {
-                                                <span  class="badge badge-warning text-dark"><i class="bi bi-hourglass-split"></i>{{ $demandes.statut }}</span>
-                                            }
-                                            @default {
-                                                <span  class="badge badge-secondary">{{ $demandes.statut }}</span>
-                                            }
-                                            
-                                        }
+                                        <app-badge [statut]="$demandes.statut"></app-badge>
                                             
                                     </td>
                                     <td class="text-end">
@@ -108,9 +96,9 @@
                     </ul>
                 </nav>
             }@else {
-                    <div class="card-body">
-                        <p class="text-center mb-0">Aucune demande trouvée</p>
-                    </div>
+                <div class="card-body">
+                    <app-alert [message]="'Aucune demande trouvée'"></app-alert>
+                </div>
                 }
         </div>
     </div>

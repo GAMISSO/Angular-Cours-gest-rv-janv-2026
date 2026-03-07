@@ -5,7 +5,7 @@ import { Patient } from "./patient/patient";
 
 export const PUBLIC_ROUTE: Routes = [
 {
-        path:'public',
+    path:'',
         component:Public,
         children: [
             {
@@ -15,11 +15,11 @@ export const PUBLIC_ROUTE: Routes = [
             },
             {
                 path:'login',
-                component:Login
+                loadComponent:()=> import('./login/login').then(m=>m.Login)
             },
             {
                 path:'create-patient',
-                component:Patient
+                loadComponent:()=> import('./patient/patient').then(m=>m.Patient)
             },
         ]
     },

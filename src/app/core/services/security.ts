@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { UserLoginRequest, UserLoginResponse } from '../models/user.model';
 import { MOCK_USERS } from '@mocks';
+import { ISecurityService } from './interfaces/security.interface.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Security {
+export class Security implements ISecurityService {
   private readonly TOKEN_KEY = 'token';
   private readonly USER_KEY = 'current-user';
   

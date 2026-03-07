@@ -1,8 +1,9 @@
 import { CommonModule, JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLoginRequest } from 'src/app/core/models/user.model';
+import { ISecurityService, SECURITY_SERVICE_TOKEN } from 'src/app/core/services/interfaces/security.interface.service';
 import { Security } from 'src/app/core/services/security';
 
 @Component({
@@ -19,7 +20,7 @@ export class Login {
 
   errorMessage: string = '';
   nom: string = 'John DOE';
-  constructor(private securityService: Security,private router: Router) {}
+  constructor(@Inject(SECURITY_SERVICE_TOKEN) private securityService: ISecurityService,private router: Router) {}
 
   onLogin(loginForm: NgForm): void {
     if (loginForm.invalid) {

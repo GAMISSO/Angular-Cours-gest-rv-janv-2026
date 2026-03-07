@@ -84,7 +84,10 @@
                                 {
                                     <div class="text-danger mt-1" >Le téléphone est requis.</div>
                                 }
-                                
+                                @if(f['telephone'].errors?.['pattern']) 
+                                {
+                                    <div class="text-danger mt-1" >Le téléphone doit être un numéro valide commençant par 77, 78 ou 79 suivi de 7 chiffres.</div>
+                                }
                                 
                             }
                         </div>

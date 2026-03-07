@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { FormDemande } from '../form-demande/form-demande';
 import { RouterLink } from '@angular/router';
 import { DemandeListeReponse, DemandeListRVModel, DemandeRVFilterModel } from '../../models/demande.model';
@@ -8,10 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DemandeMockService } from '../services/demande.mock.service';
 import { Observable, Subscription } from 'rxjs';
+import { DEMANDE_SERVICE_TOKEN, DemandeServiceInterface } from '../services/interface/demande.service.interface';
+import { Alert } from 'src/app/shared/components/alert/alert';
+import { Badge } from 'src/app/shared/components/badge/badge';
 
 @Component({
   selector: 'app-list-demande',
-  imports: [CommonModule,RouterLink, FormsModule],
+  imports: [CommonModule,RouterLink, FormsModule,Alert,Badge],
   templateUrl: './list-demande.html',
   styleUrl: './list-demande.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -24,7 +27,7 @@ export class ListDemande implements OnInit {
     statut: 'En Attente',
     specialite: ''
   };
-  constructor(private demandeService: DemandeMockService,private cdr:ChangeDetectorRef) {
+  constructor(@Inject(DEMANDE_SERVICE_TOKEN) private demandeService: DemandeServiceInterface,private cdr:ChangeDetectorRef) {
 
   }//Injections de dépendance
 

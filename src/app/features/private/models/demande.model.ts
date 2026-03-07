@@ -31,7 +31,7 @@ type SpecialiteModel =
 //  ACCEPTER = 'Acceptée',
 //  REJETER = 'Refusée'
 // }
-type StatutDemandeModel =
+export type StatutDemandeModel =
    | 'En Attente'
    | 'Acceptée'
    | 'Refusée';

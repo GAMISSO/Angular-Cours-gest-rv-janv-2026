@@ -19,10 +19,13 @@ export class Patient {
       nom: ['',[Validators.required]],
       prenom: ['',[Validators.required]],
       adresse: ['',[Validators.required]],
-      telephone: ['',[Validators.required]],
+      telephone: ['',[Validators.required,Validators.pattern(/^(77|78|79)[0-9]{7}$/)]],
       antecedents: [''],
     });
   }
+  //771001010
+  //Modif (77|78|79) [0-9]{7}
+  //Modif 7[789] [0-9]{7}
 
   get f(){
     return this.patientForm.controls;
